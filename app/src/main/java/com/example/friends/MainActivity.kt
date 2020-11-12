@@ -1,15 +1,13 @@
 package com.example.friends
 
 import android.content.Intent
-import android.graphics.Point
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.view.marginBottom
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_user.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,15 +15,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        changePics(R.drawable.character1)
-        changePics(R.drawable.character2)
-        changePics(R.drawable.character3)
-        changePics(R.drawable.character4)
-        changePics(R.drawable.character5)
-        changePics(R.drawable.character6)
+        changePics(R.drawable.character1, "Character 1")
+        changePics(R.drawable.character2, "Character 2")
+        changePics(R.drawable.character3, "Character 3")
+        changePics(R.drawable.character4, "Character 4")
+        changePics(R.drawable.character5, "Character 5")
+        changePics(R.drawable.character6, "Character 6")
     }
 
-    private fun changePics(id: Int){
+    private fun changePics(id: Int, description: String){
+
+        val id = id
+        val description = description
+
         val pics: ImageView = ImageView(this)
         pics.setImageResource(id)
         pics.setPaddingRelative(0,0,0,50)
@@ -33,8 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         pics.setOnClickListener {
             val intentUser = Intent(this, User::class.java)
-            intentUser.putExtra("user","description")
-            intentUser.putExtra("image","$id")
+            val image = id.toString()
+            intentUser.putExtra("description","$description")
+            intentUser.putExtra("image","$image")
             startActivity(intentUser)
         }
     }
