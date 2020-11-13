@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changePics(id: Int, description: String){
+/*
+        val files = R.drawable::class.java.fields
+        for (i in files){
+            val pic = Regrex("""<>""")
+        }
+*/
 
         val id = id
         val description = description
